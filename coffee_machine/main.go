@@ -35,6 +35,7 @@ func main() {
 	fmt.Println("6 - Espresso")
 	fmt.Println("Q - Quit the program")
 
+start:
 	for {
 		char, _, err := keyboard.GetSingleKey()
 		if err != nil {
@@ -46,6 +47,10 @@ func main() {
 		}
 
 		i, _ := strconv.Atoi(string(char))
+		if i < 1 || i > len(coffees) {
+			fmt.Printf("You have chosen %s, which is not a valid option. Please select a valid option or press q to quit...\n", strconv.QuoteRune(char))
+			continue start
+		}
 		fmt.Println(fmt.Sprintf("You chose %s", coffees[i]))
 
 	}
